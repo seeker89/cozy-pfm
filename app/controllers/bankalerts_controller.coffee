@@ -38,7 +38,7 @@ action 'update', ->
             send ba, 200
 
 action 'getForBankAccount', ->
-    BankAlert.allFromBankAccount req.params.id, (err , bas) ->
+    BankAlert.allFromBankAccount id: req.params.id, (err , bas) ->
         if err?
             send error: true, msg: "Server error while getting bank alerts", 500
         else
