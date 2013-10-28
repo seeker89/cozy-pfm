@@ -22,8 +22,8 @@ if model.isNew() || model.edit == true
 			.form-group
 				| #{window.i18n("accounts_alerts_balance_text_1")} 
 				select.reports-order
-					option(value="lt") #{window.i18n("accounts_alerts_lower")}
 					option(value="gt") #{window.i18n("accounts_alerts_highier")}
+					option(value="lt") #{window.i18n("accounts_alerts_lower")}
 				|  #{window.i18n("accounts_alerts_balance_text_2")} 
 				input.reports-limit(type="number", value="0")
 				.pull-right
@@ -36,9 +36,9 @@ if model.isNew() || model.edit == true
 		form.form-inline.well
 			.form-group
 				| #{window.i18n("accounts_alerts_transaction_text_1")} 
-				select.reports-order
-					option(value="lt") #{window.i18n("accounts_alerts_lower")}
+				select.reports-order 
 					option(value="gt") #{window.i18n("accounts_alerts_highier")}
+					option(value="lt") #{window.i18n("accounts_alerts_lower")}
 				|  #{window.i18n("accounts_alerts_transaction_text_2")} 
 				input.reports-limit(type="number", value="0")
 				.pull-right
