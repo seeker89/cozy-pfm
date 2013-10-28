@@ -1,4 +1,5 @@
-h2 #{model.get("title")}
+h2 #{model.get("title")} 
+    span.account-details #{model.get("accountNumber")}
 p
     span.last-checked #{window.i18n("balance_last_checked")} #{moment(moment(model.get("lastChecked"))).fromNow()}. 
     a.recheck-button.btn-link #{window.i18n("balance_recheck_now")}
