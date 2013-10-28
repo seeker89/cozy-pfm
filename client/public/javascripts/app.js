@@ -2219,6 +2219,8 @@ module.exports = SearchOperationsView = (function(_super) {
 
   SearchOperationsView.prototype.data = {};
 
+  SearchOperationsView.prototype.send = true;
+
   SearchOperationsView.prototype.events = {
     "change input": "handleUpdateFilters",
     "keyup input": "handleUpdateFilters"
@@ -2241,6 +2243,14 @@ module.exports = SearchOperationsView = (function(_super) {
     amountFrom = this.$("input#search-amount-from");
     amountTo = this.$("input#search-amount-to");
     searchText = this.$("input#search-text");
+    if (!(dateFrom.val() || dateTo.val() || amountFrom.val() || amountTo.val() || searchText.val() !== "")) {
+      console.log("Empty query");
+      this.send = false;
+      window.collections.operations.reset();
+      return;
+    } else {
+      this.send = true;
+    }
     dateFromVal = new Date(dateFrom.val() || null);
     dateToVal = new Date(dateTo.val() || new Date());
     amountFromVal = Number(amountFrom.val() || Number.NEGATIVE_INFINITY);
@@ -2292,23 +2302,25 @@ module.exports = SearchOperationsView = (function(_super) {
   };
 
   SearchOperationsView.prototype.getResults = function() {
-    return $.ajax({
-      type: "POST",
-      url: "bankoperations/query",
-      data: this.data,
-      success: function(objects) {
-        console.log("sent successfully!");
-        console.log(objects);
-        if (objects) {
-          return window.collections.operations.reset(objects);
-        } else {
-          return window.collections.operations.reset();
+    if (this.send) {
+      return $.ajax({
+        type: "POST",
+        url: "bankoperations/query",
+        data: this.data,
+        success: function(objects) {
+          console.log("sent successfully!");
+          console.log(objects);
+          if (objects) {
+            return window.collections.operations.reset(objects);
+          } else {
+            return window.collections.operations.reset();
+          }
+        },
+        error: function(err) {
+          return console.log("there was an error");
         }
-      },
-      error: function(err) {
-        return console.log("there was an error");
-      }
-    });
+      });
+    }
   };
 
   SearchOperationsView.prototype.handleUpdateAccounts = function() {
