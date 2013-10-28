@@ -29,7 +29,7 @@ module.exports = (compound, BankAccount) ->
 
         async                   = require "async"
         NotificationHelper      = require 'cozy-notifications-helper'
-        Notifications           = new NotificationHelper 'cozy-pfm', 9104
+        Notifications           = new NotificationHelper 'cozy-pfm'
         request                 = require 'request-json' 
         client                  = new request.JsonClient 'http://localhost:9101'
         som                     = 0.0
