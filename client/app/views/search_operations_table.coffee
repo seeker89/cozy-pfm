@@ -1,5 +1,6 @@
 BaseView = require '../lib/base_view'
 BankOperationsCollection = require "../collections/bank_operations"
+BalanceOperationView = require "./balance_operation"
 
 module.exports = class SearchOperationsTableView extends BaseView
 
@@ -40,10 +41,22 @@ module.exports = class SearchOperationsTableView extends BaseView
 
         console.log window.collections.operations.models
 
+        # get the bank accounts
+        accounts = []
+        for bank in window.collections.banks.models
+            for account in bank.accounts.models
+                accounts[account.get("id")] = account
+
+        console.log "accounts"
+        console.log accounts
+
         # add operations
         for operation in window.collections.operations.models
-            view.$("#search-operations-table-body").append view.templateElement
-                model: operation
+
+            #add the operation to the table
+            v = new BalanceOperationView operation, accounts[operation.get("bankAccount")]
+            console.log v.render()
+            view.$("#search-operations-table-body").append v.render().el
 
         # table sort
         $('table#search-table').dataTable

@@ -1,10 +1,10 @@
 BaseView = require '../lib/base_view'
 BankOperationsCollection = require "../collections/bank_operations"
+BalanceOperationView = require "./balance_operation"
 
 module.exports = class BalanceOperationsView extends BaseView
 
     templateHeader: require './templates/balance_operations_header'
-    templateElement: require './templates/balance_operations_element'
 
     events:
         'click a.recheck-button' : "checkAccount"
@@ -91,8 +91,9 @@ module.exports = class BalanceOperationsView extends BaseView
                 for operation in operations.models
 
                     # add the operation to the table
-                    view.$("#table-operations").append view.templateElement
-                        model: operation
+                    v = new BalanceOperationView operation, account
+                    console.log v.render()
+                    view.$("#table-operations").append v.render().el
 
                 # table sort
                 $('table.table').dataTable
