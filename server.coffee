@@ -43,6 +43,7 @@ if not module.parent
                             console.log "Successfully checked all accounts"
                         else
                             console.log "ERROR could not check accounts"
+                            console.log err
 
         # set interval
         setIntervalWithContext checkAllAccounts, 1000 * 60 * 60 * 24, @
