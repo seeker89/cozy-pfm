@@ -1,0 +1,25 @@
+doctype 5
+html(lang="en")
+    head
+        include knacss.css
+        include style.css 
+        include prettyPhoto.css 
+        link(rel="shortcut icon", href="favicon.png")
+        title="Cozy Contacts, The CRM for Individuals"
+        meta(name="description", content="")
+        meta(name="viewport", content="width=device-width,initial-scale=1")
+        meta(http-equiv="content-type", content="text/html; charset=utf-8")
+        script(src='jquery-2.0.0.min.js')
+        script(src='jquery.prettyPhoto.js')
+        script(type='text/javascript').
+          $(document).ready(function() {
+            $("a[rel^='prettyPhoto']").prettyPhoto({
+              social_tools: ""
+            });
+            $('.left-bar').hide();
+            $('.left-bar').slideDown(900);
+          });
+    body
+        .step.first-step
+            h1.main-title
+                | Would you give your bank credentials to Mark Zückerberg?

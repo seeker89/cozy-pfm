@@ -1,0 +1,94 @@
+@font-face {
+  font-family: title;
+  src: url("fonts/maven-pro-light-200.otf");
+}
+@font-face {
+  font-family: titlelight;
+  src: url("fonts/maven-pro-light-100.otf");
+}
+@font-face {
+  font-family: main;
+  src: url("fonts/signika-light.ttf");
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  text-rendering: optimizeLegibility;
+  font-family: main;
+  background: url("background.jpg") no-repeat top center fixed;
+  background-color: #f3f9fd;
+  color: #444;
+}
+h2 {
+  font-family: titlelight;
+  font-size: 28px;
+}
+h3,
+h4 {
+  font-family: main;
+  font-weight: normal;
+  color: #444;
+}
+h3 {
+  padding-left: 0px;
+  padding-right: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #444;
+}
+body,
+input {
+  color: #444;
+  font: 300 16px Geneva, Verdana, "Lucida Sans", "Lucida Grande", sans-serif;
+  line-height: 1.2;
+}
+a,
+a:visited {
+  color: #0086cc;
+  text-decoration: none;
+}
+a:hover,
+a:visited:hover {
+  text-decoration: underline;
+  color: #fe8800;
+}
+h1 {
+  font-family: title;
+  font-weight: normal;
+  font-size: 52px;
+  margin-bottom: 0;
+  margin-top: 10px;
+  line-height: 52px;
+  color: #444;
+  color: #852;
+}
+button {
+  border: 0;
+  border-radius: 3px;
+  background-color: #31b3f2;
+  color: #fff;
+  padding: 10px;
+  margin-right: 5px;
+  font-family: main;
+  font-size: 22px;
+  width: 100%;
+  margin-bottom: 10px;
+  outline: none;
+  inline: none;
+}
+button:hover {
+  background-color: #fe8800;
+  outline: none;
+}
+button:active {
+  background-color: #b25f00;
+  box-shadow: 2px 2px 2px #900 inset;
+}
+a,
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,103 @@
+rounded-border()
+    -webkit-border-radius: arguments
+    -moz-border-radius: arguments
+    border-radius: arguments
+            
+dark-grey = #444
+light-blue = #F3F9FD
+light-grey = #DDD
+blue = #31B3F2
+orange = #FE8800
+
+@font-face
+    font-family: title
+    src: url('fonts/maven-pro-light-200.otf')
+
+@font-face
+    font-family: titlelight
+    src: url('fonts/maven-pro-light-100.otf')
+
+@font-face
+    font-family: main
+    src: url('fonts/signika-light.ttf')
+
+html,
+body
+    height 100%
+    width 100%
+
+body
+    text-rendering optimizeLegibility
+    font-family: main
+    background: url(background.jpg) no-repeat top center fixed 
+    background-color: light-blue
+    color: dark-grey
+
+h2
+    font-family: titlelight
+    font-size: 28px
+
+h3
+h4
+    font-family: main
+    font-weight: normal
+    color: dark-grey
+
+h3
+    padding-left: 0px
+    padding-right: 10px
+    font-size: 20px
+    margin-bottom: 10px
+    margin-top: 10px
+    color: dark-grey
+
+body,
+input
+    color dark-grey
+    font 300 16px Geneva, Verdana, "Lucida Sans", "Lucida Grande", sans-serif
+    line-height 1.2
+
+a,
+a:visited
+    color #0086cc
+    text-decoration none
+
+    &:hover
+        text-decoration underline
+        color: orange
+
+h1
+    font-family: title
+    font-weight: normal
+    font-size: 52px
+    margin-bottom: 0
+    margin-top: 10px
+    line-height: 52px
+    color: dark-grey
+    color: #852
+
+button
+    border: 0
+    border-radius: 3px
+    background-color: blue
+    color: white
+    padding: 10px
+    margin-right: 5px
+    font-family: main
+    font-size: 22px
+    width: 100%
+    margin-bottom: 10px
+    outline: none
+    inline: none
+
+button:hover
+    background-color: orange
+    outline: none
+
+button:active
+    background-color: orange - 30%
+    box-shadow: 2px 2px 2px red - 40% inset
+
+a
+button
+    cursor: pointer
