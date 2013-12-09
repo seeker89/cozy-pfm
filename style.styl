@@ -2,13 +2,32 @@ rounded-border()
     -webkit-border-radius: arguments
     -moz-border-radius: arguments
     border-radius: arguments
-            
+
+cover-background(height, image)
+    height: height 
+    background: url(image) no-repeat center center fixed
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+
 dark-grey = #444
 light-blue = #F3F9FD
+light-green = #F3FDF9
 light-grey = #DDD
 blue = #31B3F2
+bluetitle = #0086cc
+greentitle = #00cc86
 orange = #FE8800
+green = #22cc55
+marroon = #852
+yellow = #ffc555
 
+
+@font-face
+    font-family: bigtitle
+    src: url('fonts/lobster.woff')
+    
 @font-face
     font-family: title
     src: url('fonts/maven-pro-light-200.otf')
@@ -25,13 +44,22 @@ html,
 body
     height 100%
     width 100%
+    padding 0
+    margin 0
 
 body
     text-rendering optimizeLegibility
     font-family: main
-    background: url(background.jpg) no-repeat top center fixed 
     background-color: light-blue
     color: dark-grey
+
+h1
+    margin: 0
+    font-family: bigtitle
+    font-weight: normal
+    font-size: 90px
+    line-height: 90px
+    text-shadow: 1px 1px 5px #823
 
 h2
     font-family: titlelight
@@ -59,24 +87,14 @@ input
 
 a,
 a:visited
-    color #0086cc
+    color blue
     text-decoration none
 
     &:hover
         text-decoration underline
-        color: orange
+        color: yellow
 
-h1
-    font-family: title
-    font-weight: normal
-    font-size: 52px
-    margin-bottom: 0
-    margin-top: 10px
-    line-height: 52px
-    color: dark-grey
-    color: #852
-
-button
+a.button
     border: 0
     border-radius: 3px
     background-color: blue
@@ -85,19 +103,134 @@ button
     margin-right: 5px
     font-family: main
     font-size: 22px
-    width: 100%
     margin-bottom: 10px
-    outline: none
-    inline: none
+    color: white
+    width: 500px
+    display: inline-block
 
-button:hover
-    background-color: orange
-    outline: none
+a.button:first-child
+    background-color: green
 
-button:active
-    background-color: orange - 30%
-    box-shadow: 2px 2px 2px red - 40% inset
+a.button:hover
+    background-color: yellow - 30%
+    outline: none
+    text-decoration: none
+    color: white
+
+a.button:active
+    background-color: yellow - 30%
+    box-shadow: 2px 2px 2px orange - 70% inset
 
 a
-button
+.button
     cursor: pointer
+
+.menu
+    height: 60px
+    position: fixed
+    transition: all 2s ease
+    background: green
+    width: 100%
+    z-index: 39
+    opacity: 0
+
+    a
+    span
+        color: white
+        font-family: title
+        font-size: 26px
+        padding-left: 10px
+        opacity: 1
+
+    a
+        font-weight: bold
+
+    .right
+        top: 10px
+
+        a
+            padding: 10px
+            margin-top: 10px
+
+    a:hover
+        color: yellow - 30%
+        text-decoration: none
+
+.menu.show
+    opacity: 0.8
+
+
+.step
+    h2
+        font-size: 50px
+        color: bluetitle 
+
+    text-align: center
+    padding: 200px 10% 200px 10%
+    margin: 0
+    font-family: main
+    font-size: 30px
+
+
+.image-text
+    float: right
+    padding: 20px
+    width: 40%
+    margin: 20px
+    color: #EEF
+    background: blue
+    font-size: 40px
+    font-family: main
+
+.image-text:first-child
+    margin-top: 20px
+    opacity: 0.9
+
+.first-step
+    background: green
+    color: #ffc555
+    padding: 0 10%
+
+    h1
+        padding-top: 20%
+
+.first-step-next
+    height: 200px
+    background: green
+    color: yellow
+    background: url("/images/bg1.png") no-repeat bottom center fixed
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+
+.second-step-next
+    cover-background(800px, "/images/story_01.jpg")
+
+.third-step-next
+    cover-background(800px, "/images/story_02.jpg")
+
+.fourth-step-next
+    cover-background(800px, "/images/story_03.jpg")
+
+.third-step
+    background-color: light-green
+
+    h2
+        color: greentitle - 30%
+
+.last-step
+    text-align: left
+    background: green
+    color: white
+    padding: 100px 5%
+    padding-bottom: 300px
+    font-weight: bold
+
+    a
+        color: white
+        text-decoration: underline
+
+        &:hover
+            color: yellow
+

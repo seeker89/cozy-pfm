@@ -1,4 +1,8 @@
 @font-face {
+  font-family: bigtitle;
+  src: url("fonts/lobster.woff");
+}
+@font-face {
   font-family: title;
   src: url("fonts/maven-pro-light-200.otf");
 }
@@ -14,13 +18,22 @@ html,
 body {
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
 }
 body {
   text-rendering: optimizeLegibility;
   font-family: main;
-  background: url("background.jpg") no-repeat top center fixed;
   background-color: #f3f9fd;
   color: #444;
+}
+h1 {
+  margin: 0;
+  font-family: bigtitle;
+  font-weight: normal;
+  font-size: 90px;
+  line-height: 90px;
+  text-shadow: 1px 1px 5px #823;
 }
 h2 {
   font-family: titlelight;
@@ -48,25 +61,15 @@ input {
 }
 a,
 a:visited {
-  color: #0086cc;
+  color: #31b3f2;
   text-decoration: none;
 }
 a:hover,
 a:visited:hover {
   text-decoration: underline;
-  color: #fe8800;
+  color: #ffc555;
 }
-h1 {
-  font-family: title;
-  font-weight: normal;
-  font-size: 52px;
-  margin-bottom: 0;
-  margin-top: 10px;
-  line-height: 52px;
-  color: #444;
-  color: #852;
-}
-button {
+a.button {
   border: 0;
   border-radius: 3px;
   background-color: #31b3f2;
@@ -75,20 +78,147 @@ button {
   margin-right: 5px;
   font-family: main;
   font-size: 22px;
-  width: 100%;
   margin-bottom: 10px;
-  outline: none;
-  inline: none;
+  color: #fff;
+  width: 500px;
+  display: inline-block;
 }
-button:hover {
-  background-color: #fe8800;
-  outline: none;
+a.button:first-child {
+  background-color: #2c5;
 }
-button:active {
-  background-color: #b25f00;
-  box-shadow: 2px 2px 2px #900 inset;
+a.button:hover {
+  background-color: #ee9d00;
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+}
+a.button:active {
+  background-color: #ee9d00;
+  box-shadow: 2px 2px 2px #4c2900 inset;
 }
 a,
-button {
+.button {
   cursor: pointer;
+}
+.menu {
+  height: 60px;
+  position: fixed;
+  transition: all 2s ease;
+  background: #2c5;
+  width: 100%;
+  z-index: 39;
+  opacity: 0;
+}
+.menu a,
+.menu span {
+  color: #fff;
+  font-family: title;
+  font-size: 26px;
+  padding-left: 10px;
+  opacity: 1;
+}
+.menu a {
+  font-weight: bold;
+}
+.menu .right {
+  top: 10px;
+}
+.menu .right a {
+  padding: 10px;
+  margin-top: 10px;
+}
+.menu a:hover {
+  color: #ee9d00;
+  text-decoration: none;
+}
+.menu.show {
+  opacity: 0.8;
+}
+.step {
+  text-align: center;
+  padding: 200px 10% 200px 10%;
+  margin: 0;
+  font-family: main;
+  font-size: 30px;
+}
+.step h2 {
+  font-size: 50px;
+  color: #0086cc;
+}
+.image-text {
+  float: right;
+  padding: 20px;
+  width: 40%;
+  margin: 20px;
+  color: #eef;
+  background: #31b3f2;
+  font-size: 40px;
+  font-family: main;
+}
+.image-text:first-child {
+  margin-top: 20px;
+  opacity: 0.9;
+}
+.first-step {
+  background: #2c5;
+  color: #ffc555;
+  padding: 0 10%;
+}
+.first-step h1 {
+  padding-top: 20%;
+}
+.first-step-next {
+  height: 200px;
+  background: #2c5;
+  color: #ffc555;
+  background: url("/images/bg1.png") no-repeat bottom center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.second-step-next {
+  height: 800px;
+  background: url("/images/story_01.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.third-step-next {
+  height: 800px;
+  background: url("/images/story_02.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.fourth-step-next {
+  height: 800px;
+  background: url("/images/story_03.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.third-step {
+  background-color: #f3fdf9;
+}
+.third-step h2 {
+  color: #008f5e;
+}
+.last-step {
+  text-align: left;
+  background: #2c5;
+  color: #fff;
+  padding: 100px 5%;
+  padding-bottom: 300px;
+  font-weight: bold;
+}
+.last-step a {
+  color: #fff;
+  text-decoration: underline;
+}
+.last-step a:hover {
+  color: #ffc555;
 }

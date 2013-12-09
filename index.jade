@@ -1,11 +1,12 @@
 doctype 5
+
 html(lang="en")
     head
         include knacss.css
         include style.css 
         include prettyPhoto.css 
         link(rel="shortcut icon", href="favicon.png")
-        title="Cozy Contacts, The CRM for Individuals"
+        title="Would you give your bank credentials to Mark Zuckerberg?"
         meta(name="description", content="")
         meta(name="viewport", content="width=device-width,initial-scale=1")
         meta(http-equiv="content-type", content="text/html; charset=utf-8")
@@ -13,71 +14,115 @@ html(lang="en")
         script(src='jquery.prettyPhoto.js')
         script(type='text/javascript').
           $(document).ready(function() {
-            $("a[rel^='prettyPhoto']").prettyPhoto({
-              social_tools: ""
+            windowHeight = $(window).height();
+            $(".first-step").height(windowHeight);
+
+            $(window).scroll(function() {
+              console.log($(window).scrollTop);
+              if($(window).scrollTop() > windowHeight) {
+                $(".menu").addClass('show');
+              };
             });
-            $('.left-bar').hide();
-            $('.left-bar').slideDown(900);
           });
     body
-        .step.first-step
+        .menu
+            .left.pa1
+                a(href="#top")
+                    img(src="images/bank-icon.png")
+                    span Open Pfm
+            .right.pa1
+                a(href="#links") Try
+                a(href="#about") About
+        .step.first-step#top
             h1.main-title
                 | Would you give your bank credentials to Mark Zückerberg?
+        .first-step-next
         .step
+            h2  No.
             p.
-                This is what asked me Benjamin André when he introduced me to
-                the Cozy project. For me the answer was obvious, there was no
-                way I share my bank account data with the Facebook marketers.
-                I know that most of you don't care about privacy and efficient
-                usage of personal data but that's not my case. His story about
-                how to preserve personal data convince me that something should
-                be done. The part on the money management specially kept my
-                attention for two reasons. I'm a freelancer, so I need an
-                accurate money manager and second I always feel uncomfortable
-                to give my data to Mint-like services. And thinking that some
-                day these services will probably be acquired by
-                Facebook/Google/Amazon/Whatever freaked me out. And no need to
-                tell you how awckward are the tools provided by the banks. My
-                conclusion was simple, a good and trustable tool manage my
-                money is missing.
-        .step
-            img(src="images/story_01.jpg")
-        .step
+                This is what asked me Benjamin André, Cozy Cloud CEO, when I
+                met him the first time.
+                He was introducing me to the Cozy project, a self-hosted
+                personal cloud. So, would I give my bank credentials to a
+                company of which business model is to sell its user's data? I
+                have a lot of respect for Mark Zückerberg as an entrepreneur
+                and I'm a Facebook addict, but my answer is no. 
+            p.
+                I don't know how it is for you but I have always felt
+                uncomfortable to give my data to Mint-like services. And
+                thinking that some day these services will probably be acquired
+                by Facebook/Google/Amazon/Whatever totally freaks me out.
+        .second-step-next
+            p.image-text.
+                I'm a freelancer and I spend too much money in my servers. I
+                needed a tool to fetch my operations from my bank accounts and
+                to provide me services on top of this data.
+
+        .step.third-step
+            h2.
+                A trustworthy finance manager was missing.
             p.
                 When Cozy hired me the first time, it was to prototype a
                 webmail for their platform. I enjoyed working with them so when
-                they contact me to build a new money manager app for one of
-                their client (la FING which leads experimentation about personal
-                data restitution), I immediately accepted and start to work on
+                they contact me to build a trustworthy money manager app for one of
+                their client, I immediately started to work on
                 it. The tough part came from the fact that banks don't provide 
                 any APIs to access to my data. Fortunately, I discovered an
-                awesome FOSS project called Weboob, that allows to scrap data
-                from a bank website. Bank Connectors are maintained by their
-                community are easy to build. I convinced the Cozy team to
-                integrate the lib in the core stack. They accepted, then I
-            started to work on the application 
+                awesome FOSS project called Weboob, that allows you to scrap
+                data from the web and specially from bank websites. What makes
+                it wonderful is that bank connectors are easy to build and are
+                maintained by their community.
+            p
+                &nbsp;
+            p
+                img(src="images/weboob.png")
+        .third-step-next
+            p.image-text.
+                I convinced the Cozy team to
+                integrate Weboob in the core stack. They accepted, then I
+                made big progress.
 
-        .step
-            img(src="images/story_02.jpg")
-        .step
+        .step#links
+            h2.
+                Here comes the first open source Personal Finance
+                Manager 
             p.
-                Today I'm proud to publish the first Open Source Personal
-                Finance Manager. Since, I know I can build app that can cross
-                its data with my contacts, my calendar, my todos data and
-                that its bank connectors (Cozy) are community-driven (Weboob),
-                I'm pretty sure it will become the next generation of Personal
-                Finance Manager. Thank you for your attention.
+                After long nights of work, I reached my goal! Today, I'm proud
+                to offer you the first Cloud Open Source Personal Finance
+                Manager.  It's a free and trustworthy application that allows
+                you to manage efficiently your money without worrying about
+                marketing spies. 
+            p.
+                Moreover if you are a developer like me, you can easily build
+                new services on top of this data or add a connector for any
+                bank in the world.
+            p.
+                If you want to be a pionneer of this new way of fincance
+                management, I invite you to:
 
             p.center
-                button try the demo
-                button star the repo
-                button install Cozy and Mes Comptes
-                                
-        .step
-            img(src="images/story_03.jpg")
-        .step
-            p.
-                My Name is Mikolaj Pawlikowski, I do web developement (PHP or
-                Node.js), I use trello to communicate with my clients and I love
-                to build new things. If you like my application and want to
-                work with me, feel free to contact me ! 
+                a.button(href="https://demo.cozycloud.cc/#apps/pfm") Try the demo
+                a.button(href="https://github.com/seeker89/cozy-pfm") Star the repo and post feedback
+                a.button(href="http://cozy.io") Install Cozy and the Personal Finance Manager
+        .fourth-step-next
+            .image-text
+                p Main features are:
+                ul
+                    li Operation details
+                    li Account aggregations
+                    li Operation filters (date, amount, text)
+                    li Daily/Weekly/Monthly mail reports
+                    li Alerts
+        .step.last-step#about
+            p
+                img(src="images/smiley2.png")
+            p 
+                | My Name is Mikolaj Pawlikowski, I code with PHP or Node.js, I
+                | use 
+                a(href="http://trello.com") Trello
+                | &nbsp;to manage my projects and I ship my
+                | code via 
+                a(href="http://github.com/seeker89/") Github
+                | &nbsp;. If you like my way to do and want to
+                | hire me for freelance jobs, feel free to 
+                a(href="mailto:mikolaj@pawlikowski.me") contact me! 
