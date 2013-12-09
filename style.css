@@ -104,7 +104,7 @@ a,
   height: 60px;
   position: fixed;
   transition: all 2s ease;
-  background: #2c5;
+  background: #0086cc;
   width: 100%;
   z-index: 39;
   opacity: 0;
@@ -160,7 +160,7 @@ a,
   opacity: 0.9;
 }
 .first-step {
-  background: #2c5;
+  background: #0086cc;
   color: #ffc555;
   padding: 0 10%;
 }
@@ -201,15 +201,9 @@ a,
   -o-background-size: cover;
   background-size: cover;
 }
-.third-step {
-  background-color: #f3fdf9;
-}
-.third-step h2 {
-  color: #008f5e;
-}
 .last-step {
   text-align: left;
-  background: #2c5;
+  background: #0086cc;
   color: #fff;
   padding: 100px 5%;
   padding-bottom: 300px;
