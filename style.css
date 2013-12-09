@@ -171,7 +171,7 @@ a,
   height: 200px;
   background: #2c5;
   color: #ffc555;
-  background: url("/images/bg1.png") no-repeat bottom center fixed;
+  background: url("images/bg1.png") no-repeat bottom center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -179,7 +179,7 @@ a,
 }
 .second-step-next {
   height: 800px;
-  background: url("/images/story_01.jpg") no-repeat center center fixed;
+  background: url("images/story_01.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -187,7 +187,7 @@ a,
 }
 .third-step-next {
   height: 800px;
-  background: url("/images/story_02.jpg") no-repeat center center fixed;
+  background: url("images/story_02.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -195,7 +195,7 @@ a,
 }
 .fourth-step-next {
   height: 800px;
-  background: url("/images/story_03.jpg") no-repeat center center fixed;
+  background: url("images/story_03.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
