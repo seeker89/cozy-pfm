@@ -19,7 +19,7 @@ html(lang="en")
 
             $(window).scroll(function() {
               console.log($(window).scrollTop);
-              if($(window).scrollTop() > windowHeight) {
+              if($(window).scrollTop() > windowHeight - 00) {
                 $(".menu").addClass('show');
               };
             });
@@ -29,35 +29,36 @@ html(lang="en")
             .left.pa1
                 a(href="#top")
                     img(src="images/bank-icon.png")
-                    span Open Pfm
+                    span Open Bank Manager
             .right.pa1
-                a(href="#links") Try
-                a(href="#about") About
+                a(href="#why") Why
+                a(href="#how") How
+                a(href="#what") What
         .step.first-step#top
             h1.main-title
-                | Would you give your bank credentials to Mark Zuckerberg?
-        .step
+                | Would you give your bank password to Google?
+        .step#why
             h2  No.
             p.
-                This is what asked me Benjamin André, Cozy Cloud CEO, when I
+                This is what asked me Ben, Cozy Cloud CEO, when I
                 met him the first time.
                 He was introducing me to the Cozy project, a self-hosted
                 personal cloud. So, would I give my bank credentials to a
                 company of which business model is to sell its user's data? I
-                have a lot of respect for Mark Zückerberg as an entrepreneur
-                and I'm a Facebook addict, but my answer is no. 
+                have a lot of respect for Google 
+                and I'm addict to their tools, but my answer is no. 
             p.
                 I don't know how it is for you but I have always felt
                 uncomfortable to give my data to Mint-like services. And
                 thinking that some day these services will probably be acquired
-                by Facebook/Google/Amazon/Whatever totally freaks me out.
+                by Google/Facebook/Amazon/Whatever totally freaks me out.
         .second-step-next
             p.image-text.
                 I'm a freelancer and I spend too much money in my servers. I
                 needed a tool to fetch my operations from my bank accounts and
                 to provide me services on top of this data.
 
-        .step.third-step
+        .step.third-step#how
             h2.
                 A trustworthy finance manager was missing.
             p.
@@ -74,18 +75,15 @@ html(lang="en")
                 maintained by their community.
             p
                 &nbsp;
-            p
-                a(href="http://weboob.org", target="_blank")
-                    img(src="images/weboob.png")
         .third-step-next
             p.image-text.
                 I convinced the Cozy team to
                 integrate Weboob in the core stack. They accepted, then I
                 made big progress.
 
-        .step#links
+        .step#what
             h2.
-                Here comes the first open source Personal Finance
+                The first open source Personal Finance
                 Manager 
             p.
                 After long nights of work, I reached my goal! Today, I'm proud

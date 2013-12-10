@@ -780,7 +780,7 @@ a,
 .menu {
   height: 60px;
   position: fixed;
-  transition: all 2s ease;
+  transition: all 1.5s ease;
   background: #0086cc;
   width: 100%;
   z-index: 39;
@@ -812,11 +812,11 @@ a,
   opacity: 0.8;
 }
 .step {
-  text-align: center;
-  padding: 200px 10% 200px 10%;
+  text-align: left;
+  padding: 150px 20% 150px 20%;
   margin: 0;
   font-family: main;
-  font-size: 30px;
+  font-size: 24px;
 }
 .step h2 {
   font-size: 50px;
@@ -829,7 +829,7 @@ a,
   margin: 20px;
   color: #eef;
   background: #31b3f2;
-  font-size: 40px;
+  font-size: 30px;
   font-family: main;
 }
 .image-text:first-child {
@@ -840,6 +840,7 @@ a,
   background: #0086cc;
   color: #ffc555;
   padding: 0 10%;
+  text-align: center;
 }
 .first-step h1 {
   padding-top: 20%;
@@ -855,7 +856,7 @@ a,
   background-size: cover;
 }
 .second-step-next {
-  height: 800px;
+  height: 650px;
   background: url("images/story_01.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -863,7 +864,7 @@ a,
   background-size: cover;
 }
 .third-step-next {
-  height: 800px;
+  height: 650px;
   background: url("images/story_02.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -871,7 +872,7 @@ a,
   background-size: cover;
 }
 .fourth-step-next {
-  height: 800px;
+  height: 650px;
   background: url("images/story_03.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1069,23 +1070,23 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
   
   $(window).scroll(function() {
     console.log($(window).scrollTop);
-    if($(window).scrollTop() > windowHeight) {
+    if($(window).scrollTop() > windowHeight - 100) {
       $(".menu").addClass('show');
     };
   });
-});</script></head><body><div class="menu"><div class="left pa1"><a href="#top"><img src="images/bank-icon.png"><span>Open Pfm</span></a></div><div class="right pa1"><a href="#links">Try</a><a href="#about">About</a></div></div><div id="top" class="step first-step"><h1 class="main-title">Would you give your bank credentials to Mark Zückerberg?</h1></div><div class="step"><h2> No.</h2><p>This is what asked me Benjamin André, Cozy Cloud CEO, when I
+});</script></head><body><div class="menu"><div class="left pa1"><a href="#top"><img src="images/bank-icon.png"><span>Open Bank Manager</span></a></div><div class="right pa1"><a href="#why">Why</a><a href="#how">How</a><a href="#what">What</a></div></div><div id="top" class="step first-step"><h1 class="main-title">Would you give your bank password to Google?</h1></div><div id="why" class="step"><h2> No.</h2><p>This is what asked me Ben, Cozy Cloud CEO, when I
 met him the first time.
 He was introducing me to the Cozy project, a self-hosted
 personal cloud. So, would I give my bank credentials to a
 company of which business model is to sell its user's data? I
-have a lot of respect for Mark Zückerberg as an entrepreneur
-and I'm a Facebook addict, but my answer is no. </p><p>I don't know how it is for you but I have always felt
+have a lot of respect for Google 
+and I'm addict to their tools, but my answer is no. </p><p>I don't know how it is for you but I have always felt
 uncomfortable to give my data to Mint-like services. And
 thinking that some day these services will probably be acquired
-by Facebook/Google/Amazon/Whatever totally freaks me out.</p></div><div class="second-step-next"><p class="image-text">I'm a freelancer and I spend too much money in my servers. I
+by Google/Facebook/Amazon/Whatever totally freaks me out.</p></div><div class="second-step-next"><p class="image-text">I'm a freelancer and I spend too much money in my servers. I
 needed a tool to fetch my operations from my bank accounts and
 to provide me services on top of this data.
-</p></div><div class="step third-step"><h2>A trustworthy finance manager was missing.</h2><p>When Cozy hired me the first time, it was to prototype a
+</p></div><div id="how" class="step third-step"><h2>A trustworthy finance manager was missing.</h2><p>When Cozy hired me the first time, it was to prototype a
 webmail for their platform. I enjoyed working with them so when
 they contact me to build a trustworthy money manager app for one of
 their client, I immediately started to work on
@@ -1095,10 +1096,10 @@ awesome FOSS project called Weboob (WeB Outside Of Browser),
 that allows you to scrap data from the web and specially from
 bank websites. What makes
 it wonderful is that bank connectors are easy to build and are
-maintained by their community.</p><p>&nbsp;</p><p><a href="http://weboob.org" target="_blank"><img src="images/weboob.png"></a></p></div><div class="third-step-next"><p class="image-text">I convinced the Cozy team to
+maintained by their community.</p><p>&nbsp;</p></div><div class="third-step-next"><p class="image-text">I convinced the Cozy team to
 integrate Weboob in the core stack. They accepted, then I
 made big progress.
-</p></div><div id="links" class="step"><h2>Here comes the first open source Personal Finance
+</p></div><div id="what" class="step"><h2>The first open source Personal Finance
 Manager </h2><p>After long nights of work, I reached my goal! Today, I'm proud
 to offer you the first Cloud Open Source Personal Finance
 Manager.  It's a free and trustworthy application that allows

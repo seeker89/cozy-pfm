@@ -103,7 +103,7 @@ a,
 .menu {
   height: 60px;
   position: fixed;
-  transition: all 2s ease;
+  transition: all 1.5s ease;
   background: #0086cc;
   width: 100%;
   z-index: 39;
@@ -135,11 +135,11 @@ a,
   opacity: 0.8;
 }
 .step {
-  text-align: center;
-  padding: 200px 10% 200px 10%;
+  text-align: left;
+  padding: 150px 20% 150px 20%;
   margin: 0;
   font-family: main;
-  font-size: 30px;
+  font-size: 24px;
 }
 .step h2 {
   font-size: 50px;
@@ -152,7 +152,7 @@ a,
   margin: 20px;
   color: #eef;
   background: #31b3f2;
-  font-size: 40px;
+  font-size: 30px;
   font-family: main;
 }
 .image-text:first-child {
@@ -163,6 +163,7 @@ a,
   background: #0086cc;
   color: #ffc555;
   padding: 0 10%;
+  text-align: center;
 }
 .first-step h1 {
   padding-top: 20%;
@@ -178,7 +179,7 @@ a,
   background-size: cover;
 }
 .second-step-next {
-  height: 800px;
+  height: 650px;
   background: url("images/story_01.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -186,7 +187,7 @@ a,
   background-size: cover;
 }
 .third-step-next {
-  height: 800px;
+  height: 650px;
   background: url("images/story_02.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -194,7 +195,7 @@ a,
   background-size: cover;
 }
 .fourth-step-next {
-  height: 800px;
+  height: 650px;
   background: url("images/story_03.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
