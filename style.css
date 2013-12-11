@@ -39,6 +39,7 @@ h1 {
 h2 {
   font-family: titlelight;
   font-size: 28px;
+  line-height: 60px;
 }
 h3,
 h4 {
@@ -217,4 +218,51 @@ a,
 }
 .last-step a:hover {
   color: #ffc555;
+}
+@media (max-width: 700px) {
+  .menu {
+    height: 40px;
+  }
+  .menu img {
+    display: none;
+    width: 1px;
+  }
+  .menu a,
+  .menu span {
+    font-size: 16px;
+  }
+  .image-text {
+    font-size: 20px;
+  }
+  .step {
+    font-size: 20px;
+    padding: 50px 10%;
+  }
+  .step h2 {
+    font-size: 34px;
+    line-height: 50px;
+  }
+  a.button {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 60px;
+  }
+  .image-text {
+    width: 70%;
+  }
+}
+@media (max-width: 400px) {
+  h1 {
+    font-size: 40px;
+  }
+  ul {
+    margin-left: 0;
+    padding-left: 15px;
+  }
+  .left {
+    display: none;
+  }
 }
