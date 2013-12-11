@@ -1,6 +1,6 @@
 @font-face {
   font-family: bigtitle;
-  src: url("fonts/lobster.woff");
+  src: url("fonts/chunkfive.otf");
 }
 @font-face {
   font-family: title;
@@ -34,6 +34,7 @@ h1 {
   font-size: 90px;
   line-height: 90px;
   text-shadow: 1px 1px 5px #823;
+  cursor: pointer;
 }
 h2 {
   font-family: titlelight;

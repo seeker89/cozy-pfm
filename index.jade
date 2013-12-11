@@ -17,8 +17,10 @@ html(lang="en")
             windowHeight = $(window).height();
             $(".first-step").height(windowHeight);
 
+            $("h1").click(function() {
+                $("html").animate({scrollTop: windowHeight}, 'slow');
+            });
             $(window).scroll(function() {
-              console.log($(window).scrollTop);
               if($(window).scrollTop() > windowHeight - 00) {
                 $(".menu").addClass('show');
               };
