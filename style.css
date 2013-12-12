@@ -96,7 +96,7 @@ a.button:hover {
 }
 a.button:active {
   background-color: #ee9d00;
-  box-shadow: 2px 2px 2px #4c2900 inset;
+  box-shadow: 2px 2px 2px #b25f00 inset;
 }
 a,
 .button {
