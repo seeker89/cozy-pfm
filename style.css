@@ -109,7 +109,7 @@ a,
   background: #0086cc;
   width: 100%;
   z-index: 39;
-  opacity: 0;
+  opacity: 1;
 }
 .menu a,
 .menu span {

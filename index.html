@@ -786,7 +786,7 @@ a,
   background: #0086cc;
   width: 100%;
   z-index: 39;
-  opacity: 0;
+  opacity: 1;
 }
 .menu a,
 .menu span {
@@ -1119,11 +1119,6 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
   
   $("h1").click(function() {
       $("html").animate({scrollTop: windowHeight}, 'slow');
-  });
-  $(window).scroll(function() {
-    if($(window).scrollTop() > windowHeight - 00) {
-      $(".menu").addClass('show');
-    };
   });
 });</script></head><body><div class="menu"><div class="left pa1"><a href="#top"><img src="images/bank-icon.png"><span>Open Bank Manager</span></a></div><div class="right pa1"><a href="#why">Why</a><a href="#how">How</a><a href="#what">What</a></div></div><div id="top" class="step first-step"><h1 class="main-title">Would you give your bank credentials to Mark Zuckerberg?</h1></div><div id="why" class="step"><h2> No.</h2><p>I have a lot of respect for Mark and I'm addicted to Facebook,
 but his business is to sell my data. So my answer is no.</p><p>I don't know about you, but I have always felt uncomfortable to
