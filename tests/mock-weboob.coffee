@@ -3,9 +3,8 @@ nock = require 'nock'
 options =
     allowUnmocked: true
 
-#nock.recorder.rec()
-
-weboob = nock('http://localhost:9101', options)
+#nock.recorder.rec() # enable or not the request recorder
+accounts = nock('http://localhost:9101', options)
     .persist()
     .log(console.log)
     .defaultReplyHeaders({'content-type': 'application/json; charset=utf-8'})
@@ -14,7 +13,7 @@ weboob = nock('http://localhost:9101', options)
     .post('/connectors/bank/societegenerale/', {"login":"12345","password":"54321"})
     .reply(200, require('./fixtures/weboob/accounts'))
 
-nock('http://localhost:9101', options)
+operations = nock('http://localhost:9101', options)
     .persist()
     .log(console.log)
     .defaultReplyHeaders({'content-type': 'application/json; charset=utf-8'})

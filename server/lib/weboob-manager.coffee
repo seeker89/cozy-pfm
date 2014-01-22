@@ -64,12 +64,14 @@ class WeboobManager
             else
                 operationsWeboob = body["#{access.bank}"]
                 operations = []
+                now = moment()
                 for operationWeboob in operationsWeboob
                     relatedAccount = operationWeboob.account
                     operation =
                         title: operationWeboob.label
                         amount: operationWeboob.amount
                         date: operationWeboob.rdate
+                        dateImport: now
                         raw: operationWeboob.raw
                         bankAccount: relatedAccount
 
@@ -89,8 +91,7 @@ class WeboobManager
             if operations? and operations.length > 0
                 callback()
             else
-                console.log "New operation found:"
-                console.log util.inspect operation
+                console.log "New operation found!"
                 BankOperation.create operation, (err, operation) =>
                     @newOperations.push operation unless err?
                     callback err
