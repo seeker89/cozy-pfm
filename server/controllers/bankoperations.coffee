@@ -6,7 +6,7 @@ module.exports.loadBankOperation = (req, res, next, bankOperationID) ->
         if err? or not operation?
             res.send 404, error: "BankOperation not found"
         else
-            @operation = operation
+            req.operation = operation
             next()
 
 module.exports.index = (req, res) ->
@@ -17,7 +17,7 @@ module.exports.index = (req, res) ->
             res.send 200, operations
 
 module.exports.show = (req, res) ->
-    res.send 200, @operation
+    res.send 200, req.operation
 
 module.exports.query = (req, res) ->
 

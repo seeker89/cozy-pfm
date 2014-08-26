@@ -8,7 +8,7 @@ module.exports.loadBank = (req, res, next, bankID) ->
         if err? or not bank?
             res.send 404, error: "Bank not found"
         else
-            @bank = bank
+            req.bank = bank
             next()
 
 module.exports.index = (req, res) ->
@@ -24,24 +24,24 @@ module.exports.index = (req, res) ->
         Bank.all doRespond
 
 module.exports.show = (req, res) ->
-    res.send 200, @bank
+    res.send 200, req.bank
 
 module.exports.getAccesses = (req, res) ->
-    BankAccess.allFromBank @bank, (err, accesses) ->
+    BankAccess.allFromBank req.bank, (err, accesses) ->
         if err?
             res.send 500, error: 'Server error occurred while retrieving data'
         else
             res.send 200, accesses
 
 module.exports.getAccounts = (req, res) ->
-    BankAccount.allFromBank @bank, (err, accounts) ->
+    BankAccount.allFromBank req.bank, (err, accounts) ->
         if err?
             res.send 500, error: 'Server error occurred while retrieving data'
         else
             res.send 200, accounts
 
 module.exports.destroy = (req, res) ->
-    @bank.destroyBankAccess (err) ->
+    req.bank.destroyBankAccess (err) ->
         if err?
             msg = "Could not delete accesses for bank #{bank.name}"
             res.send 500, error: msg
