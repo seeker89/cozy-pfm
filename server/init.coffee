@@ -23,6 +23,7 @@ module.exports = (app, server, callback) ->
                     console.log msg
 
                     callback app, server if callback?
+
         else
             callback app, server if callback?
 
