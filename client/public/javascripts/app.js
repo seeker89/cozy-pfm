@@ -1706,13 +1706,27 @@ module.exports = BalanceOperationView = (function(_super) {
     BalanceOperationView.__super__.constructor.call(this);
   }
 
+  BalanceOperationView.prototype.fakeFeatureLink = function() {
+    if (this.model.get('title') === "SNCF" && this.model.get('amount') === -137.00) {
+      return 'pdf/factureSNCF.pdf';
+    } else if (this.model.get('title') === "SFR Facture") {
+      return 'pdf/factureSFR.pdf';
+    } else {
+      return null;
+    }
+  };
+
   BalanceOperationView.prototype.render = function() {
-    var hint;
+    var formattedAmount, hint;
     if (this.model.get("amount") > 0) {
       this.$el.addClass("success");
     }
     this.model.account = this.account;
     this.model.formattedDate = moment(this.model.get('date')).format("DD/MM/YYYY");
+    formattedAmount = this.fakeFeatureLink();
+    if (formattedAmount !== null) {
+      this.model.formattedAmount = formattedAmount;
+    }
     if (this.showAccountNum) {
       hint = ("" + (this.model.account.get('title')) + ", ") + ("n°" + (this.model.account.get('accountNumber')));
       this.model.hint = ("" + (this.model.account.get('title')) + ", ") + ("n°" + (this.model.account.get('accountNumber')));
@@ -2894,7 +2908,18 @@ with (locals || {}) {
 var interp;
 buf.push('<td class="operation-date">' + escape((interp = model.formattedDate) == null ? '' : interp) + '</td><td class="operation-title"><div');
 buf.push(attrs({ 'data-hint':("" + (model.hint) + ""), "class": ('hint--top') }, {"data-hint":true}));
-buf.push('><span class="infobulle glyphicon glyphicon-info-sign"></span></div> ' + escape((interp = model.get('title')) == null ? '' : interp) + '</td><td class="operation-amount text-right">' + escape((interp = Number(model.get('amount')).money()) == null ? '' : interp) + '</td>');
+buf.push('><span class="infobulle glyphicon glyphicon-info-sign"></span></div> ' + escape((interp = model.get('title')) == null ? '' : interp) + '</td><td class="operation-amount text-right">');
+ if(model.formattedAmount == null)
+{
+buf.push('' + escape((interp = Number(model.get('amount')).money()) == null ? '' : interp) + '');
+}
+ else
+{
+buf.push('<a');
+buf.push(attrs({ 'href':("" + (model.formattedAmount) + ""), 'target':("_blank") }, {"href":true,"target":true}));
+buf.push('>' + escape((interp = Number(model.get('amount')).money()) == null ? '' : interp) + '</a>');
+}
+buf.push('</td>');
 }
 return buf.join("");
 };

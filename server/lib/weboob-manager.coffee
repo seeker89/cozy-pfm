@@ -1,3 +1,4 @@
+moment = require 'moment'
 util = require 'util'
 moment = require 'moment'
 Client = require('request-json').JsonClient

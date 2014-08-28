@@ -5,7 +5,7 @@ module.exports.loadAlert = (req, res, next, alertID) ->
         if err? or not alert?
             res.send 404, error: "Bank Alert not found"
         else
-            @alert = alert
+            req.alert = alert
             next()
 
 module.exports.index = (req, res) ->
@@ -23,14 +23,14 @@ module.exports.create = (req, res) ->
             res.send 201, alert
 
 module.exports.destroy = (req, res) ->
-    @alert.destroy (err) ->
+    req.alert.destroy (err) ->
         if err?
             res.send 500, error: "Server error while deleting the bank alert"
         else
             res.send 204, success: true
 
 module.exports.update = (req, res) ->
-    @alert.updateAttributes req.body, (err, alert) ->
+    req.alert.updateAttributes req.body, (err, alert) ->
         if err?
             res.send 500, error: "Server error while saving bank alert"
         else
@@ -44,4 +44,4 @@ module.exports.getForBankAccount = (req, res) ->
             res.send 200, alerts
 
 module.exports.show = (req, res) ->
-    res.send 200, @alert
+    res.send 200, req.alert

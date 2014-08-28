@@ -1,4 +1,4 @@
-if not process.env.NODE_ENV? or process.env.NODE_ENV is "development"
+if not process.env.NODE_ENV? or process.env.NODE_ENV isnt 'production'
 
     nock = require 'nock'
 
