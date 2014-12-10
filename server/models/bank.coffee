@@ -6,6 +6,7 @@ BankAccount = require './bankaccount'
 module.exports = Bank = americano.getModel 'bank',
     name: String
     uuid: String
+    websites: (x) -> x 
 
 Bank.all = (callback) ->
     Bank.request "all", callback

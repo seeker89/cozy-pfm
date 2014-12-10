@@ -8,6 +8,7 @@ module.exports = BankAccess = americano.getModel 'bankaccess',
     bank: String
     login: String
     password: String
+    website: String
 
 BankAccess.all = (callback) ->
     BankAccess.request "all", callback
@@ -90,4 +91,4 @@ BankAccess.retrieveOperationsForAllAccesses = (callback) ->
             callback()
 
 BankAccess::getAuth = ->
-    return login: @login, password: @password
+    return login: @login, password: @password, website: @website
