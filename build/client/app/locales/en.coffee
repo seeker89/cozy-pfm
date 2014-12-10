@@ -18,6 +18,7 @@ module.exports =
     "add_bank_login_placeholder" : "enter login here"
     "add_bank_password" : "Password"
     "add_bank_password_placeholder" : "enter password here"
+    "add_bank_website" : "Site"
     "add_bank_security_notice" : "Security notice"
     # the actual text of the security notice
     "add_bank_security_notice_text" : "Your login and password are encrypted in the database. As a result, only applications that you gave permission for 'BankAccess' will be able to see it unencrypted. Make sure security is our first concern regarding this application."

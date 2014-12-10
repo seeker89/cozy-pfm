@@ -4,4 +4,8 @@ td.operation-title
         span.infobulle.glyphicon.glyphicon-info-sign
     |  #{model.get('title')}
 td.operation-amount.text-right
-    | #{Number(model.get('amount')).money()}
+    - if(model.formattedAmount == null)
+        | #{Number(model.get('amount')).money()}
+    - else
+        a(href="#{model.formattedAmount}", target="_blank")
+            | #{Number(model.get('amount')).money()}

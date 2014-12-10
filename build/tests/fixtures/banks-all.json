@@ -37,7 +37,30 @@
 {
     "docType": "Bank",
     "name": "Banque Populaire",
-    "uuid": "banquepopulaire"
+    "uuid": "banquepopulaire",
+    "websites": [
+      
+      {"label": "Alpes", "hostname": "www.ibps.alpes.banquepopulaire.fr"},
+      {"label": "Alsace", "hostname": "www.ibps.alsace.banquepopulaire.fr"},
+      {"label": "Aquitaine Centre atlantique", "hostname": "www.ibps.bpaca.banquepopulaire.fr"},
+      {"label": "Atlantique", "hostname": "www.ibps.atlantique.banquepopulaire.fr"},
+      {"label": "Bourgogne-Franche Comté", "hostname": "www.ibps.bpbfc.banquepopulaire.fr"},
+      {"label": "Crédit Maritime Bretagne Normandie", "hostname": "www.ibps.bretagnenormandie.cmm.groupe.banquepopulaire.fr"},
+      {"label": "Crédit Maritime Atlantique", "hostname": "www.ibps.atlantique.creditmaritime.groupe.banquepopulaire.fr"},
+      {"label": "Crédit Maritime du Littoral du Sud-Ouest", "hostname": "www.ibps.sudouest.creditmaritime.groupe.banquepopulaire.fr"},
+      {"label": "Côte d'azur", "hostname": "www.ibps.cotedazur.banquepopulaire.fr"},
+      {"label": "Loire et Lyonnais", "hostname": "www.ibps.loirelyonnais.banquepopulaire.fr"},
+      {"label": "Lorraine Champagne", "hostname": "www.ibps.lorrainechampagne.banquepopulaire.fr"},
+      {"label": "Massif central", "hostname": "www.ibps.massifcentral.banquepopulaire.fr"},
+      {"label": "Nord", "hostname": "www.ibps.nord.banquepopulaire.fr"},
+      {"label": "Occitane", "hostname": "www.ibps.occitane.banquepopulaire.fr"},
+      {"label": "Ouest", "hostname": "www.ibps.ouest.banquepopulaire.fr"},
+      {"label": "Provence et Corse", "hostname": "www.ibps.provencecorse.banquepopulaire.fr"},
+      {"label": "Rives de Paris", "hostname": "www.ibps.rivesparis.banquepopulaire.fr"},
+      {"label": "Sud", "hostname": "www.ibps.sud.banquepopulaire.fr"},
+      {"label": "Val de France", "hostname": "www.ibps.valdefrance.banquepopulaire.fr"}
+      
+    ]
 },
 {
     "docType": "Bank",

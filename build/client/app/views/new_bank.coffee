@@ -9,11 +9,27 @@ module.exports = class NewBankView extends BaseView
 
     events:
         'click #btn-add-bank-save' : "saveBank"
+        'change #inputBank' : "displayWebsites"
 
     initialize: ->
         @$el.on 'hidden.bs.modal', =>
             @render()
 
+    displayWebsites: (event) ->
+      inputBank = $ event.target
+      bank_id = inputBank.val()
+      bank = window.collections.allBanks.findWhere({ uuid: bank_id })
+      websites = bank.get('websites')
+      formInputWebsite = $("#formInputWebsite")
+      if websites?
+        formInputWebsite.removeClass("hide")
+      else
+        formInputWebsite.addClass("hide")
+      
+      for website in websites      
+        $("#formInputWebsite").removeClass("hide")
+        $("#inputWebsite").append("<option value=\"" + website.hostname + "\">" + website.label + "</option>")
+      
     saveBank: (event) ->
         event.preventDefault()
 
@@ -34,6 +50,7 @@ module.exports = class NewBankView extends BaseView
             login: $("#inputLogin").val()
             password: $("#inputPass").val()
             bank: $("#inputBank").val()
+            website: $("#inputWebsite").val()
 
         bankAccess = new BankAccessModel data
 
