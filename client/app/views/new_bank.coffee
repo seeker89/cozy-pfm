@@ -26,6 +26,7 @@ module.exports = class NewBankView extends BaseView
       else
         formInputWebsite.addClass("hide")
       
+      $("#inputWebsite").empty()
       for website in websites      
         $("#formInputWebsite").removeClass("hide")
         $("#inputWebsite").append("<option value=\"" + website.hostname + "\">" + website.label + "</option>")
