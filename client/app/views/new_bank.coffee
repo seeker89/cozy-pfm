@@ -16,21 +16,23 @@ module.exports = class NewBankView extends BaseView
             @render()
 
     displayWebsites: (event) ->
-      inputBank = $ event.target
-      bank_id = inputBank.val()
-      bank = window.collections.allBanks.findWhere({ uuid: bank_id })
-      websites = bank.get('websites')
-      formInputWebsite = $("#formInputWebsite")
-      if websites?
-        formInputWebsite.removeClass("hide")
-      else
-        formInputWebsite.addClass("hide")
+        inputBank = $ event.target
+        bank_id = inputBank.val()
+        bank = window.collections.allBanks.findWhere uuid: bank_id
+        websites = bank.get 'websites'
+        formInputWebsite = $ "#formInputWebsite"
+        if websites?
+            formInputWebsite.removeClass "hide"
+        else
+            formInputWebsite.addClass("hide"
 
-      $("#inputWebsite").empty()
-      for website in websites
-        $("#formInputWebsite").removeClass("hide")
-        $("#inputWebsite").append(
-            "<option value=\"#{website.hostname}\">#{website.label}</option>")
+        $("#inputWebsite").empty()
+        for website in websites
+            $("#formInputWebsite").removeClass "hide"
+            hostname = website.hostname
+            label = website.label
+            $("#inputWebsite").append(
+                "<option value=\"#{hostname}\">#{label}</option>")
 
     saveBank: (event) ->
         event.preventDefault()
