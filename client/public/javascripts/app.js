@@ -604,6 +604,7 @@ module.exports = {
   "add_bank_login_placeholder": "enter login here",
   "add_bank_password": "Password",
   "add_bank_password_placeholder": "enter password here",
+  "add_bank_website": "Site",
   "add_bank_security_notice": "Security notice",
   "add_bank_security_notice_text": "Your login and password are encrypted in the database. As a result, only applications that you gave permission for 'BankAccess' will be able to see it unencrypted. Make sure security is our first concern regarding this application.",
   "add_bank_cancel": "cancel",
@@ -681,6 +682,7 @@ module.exports = {
   "add_bank_login_placeholder": "Entrez votre nom d'utilisateur ici",
   "add_bank_password": "Mot de passe",
   "add_bank_password_placeholder": "Entrez votre mot de passe ici",
+  "add_bank_website": "Site",
   "add_bank_security_notice": "Information concernant la sécurité",
   "add_bank_security_notice_text": "Votre nom d'utilisateur et votre mot de passe sont chiffrés dans la base de données. En conséquence, seules les applications possédant la permission d'accéder au 'BankAccess' pourront voir ces informations déchiffrées. Soyez sûr que la sécurité est la priorité de cette application.",
   "add_bank_cancel": "cancel",
@@ -2119,7 +2121,8 @@ module.exports = NewBankView = (function(_super) {
   NewBankView.prototype.el = 'div#add-bank-window';
 
   NewBankView.prototype.events = {
-    'click #btn-add-bank-save': "saveBank"
+    'click #btn-add-bank-save': "saveBank",
+    'change #inputBank': "displayWebsites"
   };
 
   NewBankView.prototype.initialize = function() {
@@ -2129,6 +2132,30 @@ module.exports = NewBankView = (function(_super) {
     });
   };
 
+  NewBankView.prototype.displayWebsites = function(event) {
+    var bank, bank_id, formInputWebsite, inputBank, website, websites, _i, _len, _results;
+    inputBank = $(event.target);
+    bank_id = inputBank.val();
+    bank = window.collections.allBanks.findWhere({
+      uuid: bank_id
+    });
+    websites = bank.get('websites');
+    formInputWebsite = $("#formInputWebsite");
+    if (websites != null) {
+      formInputWebsite.removeClass("hide");
+    } else {
+      formInputWebsite.addClass("hide");
+    }
+    $("#inputWebsite").empty();
+    _results = [];
+    for (_i = 0, _len = websites.length; _i < _len; _i++) {
+      website = websites[_i];
+      $("#formInputWebsite").removeClass("hide");
+      _results.push($("#inputWebsite").append("<option value=\"" + website.hostname + "\">" + website.label + "</option>"));
+    }
+    return _results;
+  };
+
   NewBankView.prototype.saveBank = function(event) {
     var bankAccess, button, data, oldText, view;
     event.preventDefault();
@@ -2136,23 +2163,24 @@ module.exports = NewBankView = (function(_super) {
     button = $(event.target);
     oldText = button.html();
     button.addClass("disabled");
-    button.html(window.i18n("verifying") + "<img src='./loader_green.gif' />");
+    button.html("" + (window.i18n("verifying")) + " <img src='./loader_green.gif' />");
     button.removeClass('btn-warning');
     button.addClass('btn-success');
     this.$(".message-modal").html("");
     data = {
       login: $("#inputLogin").val(),
       password: $("#inputPass").val(),
-      bank: $("#inputBank").val()
+      bank: $("#inputBank").val(),
+      website: $("#inputWebsite").val()
     };
     bankAccess = new BankAccessModel(data);
     return bankAccess.save(data, {
       success: function(model, response, options) {
         var bank;
-        button.html(window.i18n("sent") + " <img src='./loader_green.gif' />");
+        button.html("" + (window.i18n("sent")) + " <img src='./loader_green.gif' />");
         bank = window.collections.allBanks.get(data.bank);
         if (bank != null) {
-          console.log("Fetching for new accounts in bank" + bank.get("name"));
+          console.log("Fetching new accounts for bank " + (bank.get("name")));
           bank.accounts.trigger("loading");
           bank.accounts.fetch();
         }
@@ -2171,14 +2199,16 @@ module.exports = NewBankView = (function(_super) {
         }, 500);
       },
       error: function(model, xhr, options) {
+        var accessString, errorString;
         button.removeClass('btn-success');
         button.removeClass('disabled');
         button.addClass('btn-warning');
         if (((xhr != null ? xhr.status : void 0) != null) && xhr.status === 409) {
-          this.$(".message-modal").html("<div class='alert alert-danger'>" + window.i18n("access already exists") + "</div>");
+          accessString = window.i18n("access already exists");
+          this.$(".message-modal").html("<div class='alert alert-danger'>" + accessString + "</div>");
           return button.html(window.i18n("access already exists button"));
         } else {
-          this.$(".message-modal").html("<div class='alert alert-danger'>" + window.i18n("error_check_credentials") + "</div>");
+          this.$(".message-modal").html(errorString = window.i18n("error_check_credentials"), "<div class='alert alert-danger'>" + errorString + "</div>");
           return button.html(window.i18n("error_check_credentials_btn"));
         }
       }
@@ -3035,7 +3065,7 @@ buf.push('</option>');
   }
 }).call(this);
 
-buf.push('</select></div></fieldset><fieldset><legend>' + escape((interp = window.i18n("add_bank_credentials")) == null ? '' : interp) + '</legend><div class="form-group"><label for="inputLogin">' + escape((interp = window.i18n("add_bank_login")) == null ? '' : interp) + '</label><input');
+buf.push('</select></div><div id="formInputWebsite" class="form-group hide"><label for="inputWebsite">' + escape((interp = window.i18n("add_bank_website")) == null ? '' : interp) + '</label><select id="inputWebsite" class="form-control"></select></div></fieldset><fieldset><legend>' + escape((interp = window.i18n("add_bank_credentials")) == null ? '' : interp) + '</legend><div class="form-group"><label for="inputLogin">' + escape((interp = window.i18n("add_bank_login")) == null ? '' : interp) + '</label><input');
 buf.push(attrs({ 'id':('inputLogin'), 'type':('text'), 'placeholder':(window.i18n("add_bank_login_placeholder")), "class": ('form-control') }, {"type":true,"placeholder":true}));
 buf.push('/></div><div class="form-group"><label for="inputPass">' + escape((interp = window.i18n("add_bank_password")) == null ? '' : interp) + '</label><input');
 buf.push(attrs({ 'id':('inputPass'), 'type':('password'), 'placeholder':(window.i18n("add_bank_password_placeholder")), "class": ('form-control') }, {"type":true,"placeholder":true}));
