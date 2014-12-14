@@ -25,12 +25,13 @@ module.exports = class NewBankView extends BaseView
         formInputWebsite.removeClass("hide")
       else
         formInputWebsite.addClass("hide")
-      
+
       $("#inputWebsite").empty()
-      for website in websites      
+      for website in websites
         $("#formInputWebsite").removeClass("hide")
-        $("#inputWebsite").append("<option value=\"" + website.hostname + "\">" + website.label + "</option>")
-      
+        $("#inputWebsite").append(
+            "<option value=\"#{website.hostname}\">#{website.label}</option>")
+
     saveBank: (event) ->
         event.preventDefault()
 
@@ -40,7 +41,8 @@ module.exports = class NewBankView extends BaseView
 
         oldText = button.html()
         button.addClass "disabled"
-        button.html window.i18n("verifying") + "<img src='./loader_green.gif' />"
+        button.html(
+            "#{window.i18n("verifying")} <img src='./loader_green.gif' />")
 
         button.removeClass 'btn-warning'
         button.addClass 'btn-success'
@@ -57,12 +59,14 @@ module.exports = class NewBankView extends BaseView
 
         bankAccess.save data,
             success: (model, response, options) ->
-                button.html window.i18n("sent") + " <img src='./loader_green.gif' />"
+                button.html(
+                    "#{window.i18n("sent")} <img src='./loader_green.gif' />")
 
                 # fetch the new accounts:
                 bank = window.collections.allBanks.get(data.bank)
                 if bank?
-                    console.log "Fetching for new accounts in bank" + bank.get("name")
+                    console.log(
+                        "Fetching new accounts for bank #{bank.get("name")}")
                     bank.accounts.trigger "loading"
                     bank.accounts.fetch()
 
@@ -71,7 +75,8 @@ module.exports = class NewBankView extends BaseView
                 button.removeClass "disabled"
                 button.html oldText
 
-                window.activeObjects.trigger "new_access_added_successfully", model
+                window.activeObjects.trigger(
+                    "new_access_added_successfully", model)
 
                 setTimeout () ->
                     $("#add-bank-window").modal("hide")
@@ -85,10 +90,14 @@ module.exports = class NewBankView extends BaseView
                 button.addClass 'btn-warning'
 
                 if xhr?.status? and xhr.status is 409
-                    @$(".message-modal").html "<div class='alert alert-danger'>" + window.i18n("access already exists") + "</div>"
+                    accessString = window.i18n("access already exists")
+                    @$(".message-modal").html(
+                        "<div class='alert alert-danger'>#{accessString}</div>")
                     button.html window.i18n("access already exists button")
                 else
-                    @$(".message-modal").html "<div class='alert alert-danger'>" + window.i18n("error_check_credentials") + "</div>"
+                    @$(".message-modal").html(
+                        errorString = window.i18n("error_check_credentials")
+                        "<div class='alert alert-danger'>#{errorString}</div>")
                     button.html window.i18n("error_check_credentials_btn")
 
     getRenderData: ->
