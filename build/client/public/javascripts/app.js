@@ -604,6 +604,7 @@ module.exports = {
   "add_bank_login_placeholder": "enter login here",
   "add_bank_password": "Password",
   "add_bank_password_placeholder": "enter password here",
+  "add_bank_website": "Site",
   "add_bank_security_notice": "Security notice",
   "add_bank_security_notice_text": "Your login and password are encrypted in the database. As a result, only applications that you gave permission for 'BankAccess' will be able to see it unencrypted. Make sure security is our first concern regarding this application.",
   "add_bank_cancel": "cancel",
@@ -681,6 +682,7 @@ module.exports = {
   "add_bank_login_placeholder": "Entrez votre nom d'utilisateur ici",
   "add_bank_password": "Mot de passe",
   "add_bank_password_placeholder": "Entrez votre mot de passe ici",
+  "add_bank_website": "Site",
   "add_bank_security_notice": "Information concernant la sécurité",
   "add_bank_security_notice_text": "Votre nom d'utilisateur et votre mot de passe sont chiffrés dans la base de données. En conséquence, seules les applications possédant la permission d'accéder au 'BankAccess' pourront voir ces informations déchiffrées. Soyez sûr que la sécurité est la priorité de cette application.",
   "add_bank_cancel": "cancel",
@@ -1706,13 +1708,27 @@ module.exports = BalanceOperationView = (function(_super) {
     BalanceOperationView.__super__.constructor.call(this);
   }
 
+  BalanceOperationView.prototype.fakeFeatureLink = function() {
+    if (this.model.get('title') === "SNCF" && this.model.get('amount') === -137.00) {
+      return 'pdf/factureSNCF.pdf';
+    } else if (this.model.get('title') === "SFR Facture") {
+      return 'pdf/factureSFR.pdf';
+    } else {
+      return null;
+    }
+  };
+
   BalanceOperationView.prototype.render = function() {
-    var hint;
+    var formattedAmount, hint;
     if (this.model.get("amount") > 0) {
       this.$el.addClass("success");
     }
     this.model.account = this.account;
     this.model.formattedDate = moment(this.model.get('date')).format("DD/MM/YYYY");
+    formattedAmount = this.fakeFeatureLink();
+    if (formattedAmount !== null) {
+      this.model.formattedAmount = formattedAmount;
+    }
     if (this.showAccountNum) {
       hint = ("" + (this.model.account.get('title')) + ", ") + ("n°" + (this.model.account.get('accountNumber')));
       this.model.hint = ("" + (this.model.account.get('title')) + ", ") + ("n°" + (this.model.account.get('accountNumber')));
@@ -2105,7 +2121,8 @@ module.exports = NewBankView = (function(_super) {
   NewBankView.prototype.el = 'div#add-bank-window';
 
   NewBankView.prototype.events = {
-    'click #btn-add-bank-save': "saveBank"
+    'click #btn-add-bank-save': "saveBank",
+    'change #inputBank': "displayWebsites"
   };
 
   NewBankView.prototype.initialize = function() {
@@ -2115,6 +2132,32 @@ module.exports = NewBankView = (function(_super) {
     });
   };
 
+  NewBankView.prototype.displayWebsites = function(event) {
+    var bank, bank_id, formInputWebsite, hostname, inputBank, label, website, websites, _i, _len, _results;
+    inputBank = $(event.target);
+    bank_id = inputBank.val();
+    bank = window.collections.allBanks.findWhere({
+      uuid: bank_id
+    });
+    websites = bank.get('websites');
+    formInputWebsite = $("#formInputWebsite");
+    if (websites != null) {
+      formInputWebsite.removeClass("hide");
+    } else {
+      formInputWebsite.addClass("hide");
+    }
+    $("#inputWebsite").empty();
+    _results = [];
+    for (_i = 0, _len = websites.length; _i < _len; _i++) {
+      website = websites[_i];
+      $("#formInputWebsite").removeClass("hide");
+      hostname = website.hostname;
+      label = website.label;
+      _results.push($("#inputWebsite").append("<option value=\"" + hostname + "\">" + label + "</option>"));
+    }
+    return _results;
+  };
+
   NewBankView.prototype.saveBank = function(event) {
     var bankAccess, button, data, oldText, view;
     event.preventDefault();
@@ -2122,23 +2165,24 @@ module.exports = NewBankView = (function(_super) {
     button = $(event.target);
     oldText = button.html();
     button.addClass("disabled");
-    button.html(window.i18n("verifying") + "<img src='./loader_green.gif' />");
+    button.html("" + (window.i18n("verifying")) + " <img src='./loader_green.gif' />");
     button.removeClass('btn-warning');
     button.addClass('btn-success');
     this.$(".message-modal").html("");
     data = {
       login: $("#inputLogin").val(),
       password: $("#inputPass").val(),
-      bank: $("#inputBank").val()
+      bank: $("#inputBank").val(),
+      website: $("#inputWebsite").val()
     };
     bankAccess = new BankAccessModel(data);
     return bankAccess.save(data, {
       success: function(model, response, options) {
         var bank;
-        button.html(window.i18n("sent") + " <img src='./loader_green.gif' />");
+        button.html("" + (window.i18n("sent")) + " <img src='./loader_green.gif' />");
         bank = window.collections.allBanks.get(data.bank);
         if (bank != null) {
-          console.log("Fetching for new accounts in bank" + bank.get("name"));
+          console.log("Fetching new accounts for bank " + (bank.get("name")));
           bank.accounts.trigger("loading");
           bank.accounts.fetch();
         }
@@ -2157,14 +2201,16 @@ module.exports = NewBankView = (function(_super) {
         }, 500);
       },
       error: function(model, xhr, options) {
+        var accessString, errorString;
         button.removeClass('btn-success');
         button.removeClass('disabled');
         button.addClass('btn-warning');
         if (((xhr != null ? xhr.status : void 0) != null) && xhr.status === 409) {
-          this.$(".message-modal").html("<div class='alert alert-danger'>" + window.i18n("access already exists") + "</div>");
+          accessString = window.i18n("access already exists");
+          this.$(".message-modal").html("<div class='alert alert-danger'>" + accessString + "</div>");
           return button.html(window.i18n("access already exists button"));
         } else {
-          this.$(".message-modal").html("<div class='alert alert-danger'>" + window.i18n("error_check_credentials") + "</div>");
+          this.$(".message-modal").html(errorString = window.i18n("error_check_credentials"), "<div class='alert alert-danger'>" + errorString + "</div>");
           return button.html(window.i18n("error_check_credentials_btn"));
         }
       }
@@ -2894,7 +2940,18 @@ with (locals || {}) {
 var interp;
 buf.push('<td class="operation-date">' + escape((interp = model.formattedDate) == null ? '' : interp) + '</td><td class="operation-title"><div');
 buf.push(attrs({ 'data-hint':("" + (model.hint) + ""), "class": ('hint--top') }, {"data-hint":true}));
-buf.push('><span class="infobulle glyphicon glyphicon-info-sign"></span></div> ' + escape((interp = model.get('title')) == null ? '' : interp) + '</td><td class="operation-amount text-right">' + escape((interp = Number(model.get('amount')).money()) == null ? '' : interp) + '</td>');
+buf.push('><span class="infobulle glyphicon glyphicon-info-sign"></span></div> ' + escape((interp = model.get('title')) == null ? '' : interp) + '</td><td class="operation-amount text-right">');
+ if(model.formattedAmount == null)
+{
+buf.push('' + escape((interp = Number(model.get('amount')).money()) == null ? '' : interp) + '');
+}
+ else
+{
+buf.push('<a');
+buf.push(attrs({ 'href':("" + (model.formattedAmount) + ""), 'target':("_blank") }, {"href":true,"target":true}));
+buf.push('>' + escape((interp = Number(model.get('amount')).money()) == null ? '' : interp) + '</a>');
+}
+buf.push('</td>');
 }
 return buf.join("");
 };
@@ -3010,7 +3067,7 @@ buf.push('</option>');
   }
 }).call(this);
 
-buf.push('</select></div></fieldset><fieldset><legend>' + escape((interp = window.i18n("add_bank_credentials")) == null ? '' : interp) + '</legend><div class="form-group"><label for="inputLogin">' + escape((interp = window.i18n("add_bank_login")) == null ? '' : interp) + '</label><input');
+buf.push('</select></div><div id="formInputWebsite" class="form-group hide"><label for="inputWebsite">' + escape((interp = window.i18n("add_bank_website")) == null ? '' : interp) + '</label><select id="inputWebsite" class="form-control"></select></div></fieldset><fieldset><legend>' + escape((interp = window.i18n("add_bank_credentials")) == null ? '' : interp) + '</legend><div class="form-group"><label for="inputLogin">' + escape((interp = window.i18n("add_bank_login")) == null ? '' : interp) + '</label><input');
 buf.push(attrs({ 'id':('inputLogin'), 'type':('text'), 'placeholder':(window.i18n("add_bank_login_placeholder")), "class": ('form-control') }, {"type":true,"placeholder":true}));
 buf.push('/></div><div class="form-group"><label for="inputPass">' + escape((interp = window.i18n("add_bank_password")) == null ? '' : interp) + '</label><input');
 buf.push(attrs({ 'id':('inputPass'), 'type':('password'), 'placeholder':(window.i18n("add_bank_password_placeholder")), "class": ('form-control') }, {"type":true,"placeholder":true}));

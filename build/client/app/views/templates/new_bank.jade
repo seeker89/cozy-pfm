@@ -15,6 +15,12 @@
               each bank in banks
                 option(value=bank.get("uuid"))
                   =bank.get("name")
+
+          #formInputWebsite.form-group.hide
+            label(for='inputWebsite')
+              | #{window.i18n("add_bank_website")}
+            select#inputWebsite.form-control
+            
         fieldset
           legend
             | #{window.i18n("add_bank_credentials")}
