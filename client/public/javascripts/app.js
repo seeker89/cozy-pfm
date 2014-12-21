@@ -2133,7 +2133,7 @@ module.exports = NewBankView = (function(_super) {
   };
 
   NewBankView.prototype.displayWebsites = function(event) {
-    var bank, bank_id, formInputWebsite, inputBank, website, websites, _i, _len, _results;
+    var bank, bank_id, formInputWebsite, hostname, inputBank, label, website, websites, _i, _len, _results;
     inputBank = $(event.target);
     bank_id = inputBank.val();
     bank = window.collections.allBanks.findWhere({
@@ -2151,7 +2151,9 @@ module.exports = NewBankView = (function(_super) {
     for (_i = 0, _len = websites.length; _i < _len; _i++) {
       website = websites[_i];
       $("#formInputWebsite").removeClass("hide");
-      _results.push($("#inputWebsite").append("<option value=\"" + website.hostname + "\">" + website.label + "</option>"));
+      hostname = website.hostname;
+      label = website.label;
+      _results.push($("#inputWebsite").append("<option value=\"" + hostname + "\">" + label + "</option>"));
     }
     return _results;
   };

@@ -24,7 +24,7 @@ module.exports = class NewBankView extends BaseView
         if websites?
             formInputWebsite.removeClass "hide"
         else
-            formInputWebsite.addClass("hide"
+            formInputWebsite.addClass "hide"
 
         $("#inputWebsite").empty()
         for website in websites
