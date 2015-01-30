@@ -21,18 +21,18 @@ module.exports = class NewBankView extends BaseView
         bank = window.collections.allBanks.findWhere uuid: bank_id
         websites = bank.get 'websites'
         formInputWebsite = $ "#formInputWebsite"
-        if websites?
+        # Only shows websites if the bank has some
+        if websites? and websites.length > 0
             formInputWebsite.removeClass "hide"
+            for website in websites
+                $("#formInputWebsite").removeClass "hide"
+                hostname = website.hostname
+                label = website.label
+                option = "<option value=\"#{hostname}\">#{label}</option>"
+                $("#inputWebsite").append option
         else
             formInputWebsite.addClass "hide"
 
-        $("#inputWebsite").empty()
-        for website in websites
-            $("#formInputWebsite").removeClass "hide"
-            hostname = website.hostname
-            label = website.label
-            $("#inputWebsite").append(
-                "<option value=\"#{hostname}\">#{label}</option>")
 
     saveBank: (event) ->
         event.preventDefault()

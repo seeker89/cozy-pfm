@@ -2133,7 +2133,7 @@ module.exports = NewBankView = (function(_super) {
   };
 
   NewBankView.prototype.displayWebsites = function(event) {
-    var bank, bank_id, formInputWebsite, hostname, inputBank, label, website, websites, _i, _len, _results;
+    var bank, bank_id, formInputWebsite, hostname, inputBank, label, option, website, websites, _i, _len, _results;
     inputBank = $(event.target);
     bank_id = inputBank.val();
     bank = window.collections.allBanks.findWhere({
@@ -2141,21 +2141,21 @@ module.exports = NewBankView = (function(_super) {
     });
     websites = bank.get('websites');
     formInputWebsite = $("#formInputWebsite");
-    if (websites != null) {
+    if ((websites != null) && websites.length > 0) {
       formInputWebsite.removeClass("hide");
+      _results = [];
+      for (_i = 0, _len = websites.length; _i < _len; _i++) {
+        website = websites[_i];
+        $("#formInputWebsite").removeClass("hide");
+        hostname = website.hostname;
+        label = website.label;
+        option = "<option value=\"" + hostname + "\">" + label + "</option>";
+        _results.push($("#inputWebsite").append(option));
+      }
+      return _results;
     } else {
-      formInputWebsite.addClass("hide");
+      return formInputWebsite.addClass("hide");
     }
-    $("#inputWebsite").empty();
-    _results = [];
-    for (_i = 0, _len = websites.length; _i < _len; _i++) {
-      website = websites[_i];
-      $("#formInputWebsite").removeClass("hide");
-      hostname = website.hostname;
-      label = website.label;
-      _results.push($("#inputWebsite").append("<option value=\"" + hostname + "\">" + label + "</option>"));
-    }
-    return _results;
   };
 
   NewBankView.prototype.saveBank = function(event) {
