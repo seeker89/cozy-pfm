@@ -1,6 +1,6 @@
 # [Cozy](http://cozy.io) Personal Finance Manager
 
-Safely track your banking histroy, check your overall balance and know exactly on what you are spending money!
+Safely track your banking history, check your overall balance and know exactly on what you are spending money!
 
 ## Contribution
 
